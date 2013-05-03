@@ -1,0 +1,131 @@
+<style>
+    body {
+        margin:0 auto;
+        text-align:center;
+        position:relative;
+        width:950px;
+    }
+
+    .container {
+        margin-top:100px;
+        position:relative;
+    }
+
+    .my_class {
+        font-size:1.5em;
+        color:#abc;
+        background-color:#def;
+        -moz-border-radius:30px;
+        width:30px;
+        height:30px;
+        -webkit-border-radius:30px;
+    }
+
+    #radial_container {
+        position:relative;
+        left:225px;
+        top: 75px;
+        width:100px;
+        height:100px;
+        text-align:center;
+    }
+    .radial_div_item {
+        background-color:none;
+        height:30px;
+        padding:10px;
+        color:#234;
+        -moz-border-radius:10px;
+        -webkit-border-radius:10px;
+        cursor:pointer;
+    }
+    .radial_div_item.active {
+        background-color:#511; color:white;
+        padding: 10px;
+        -moz-border-radius:40px;
+        z-index:100;
+    }
+
+    .example-code {
+        position:relative;
+        float:right;
+        right:0px;
+        text-align:left;
+        top:10px;
+    }
+
+    .example-code pre {
+        line-height:0.6;
+    }
+
+</style>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery("#radial_container").radmenu({
+            listClass: 'list', // the list class to look within for items
+            itemClass: 'item', // the items - NOTE: the HTML inside the item is copied into the menu item
+            radius: 100, // radius in pixels
+            animSpeed:400, // animation speed in millis
+            centerX: 30, // the center x axis offset
+            centerY: 80, // the center y axis offset
+            selectEvent: "click", // the select event (click)
+            onSelect: function($selected){ // show what is returned
+                alert("you clicked on .. " + $selected.index());
+            },
+            rotate:true,
+            angleOffset: 0, // in radians
+            onShow: function($menuitems){
+                $menuitems.each(function(i){
+                    var $this = jQuery(this);
+                    setTimeout(function(){$this.fadeIn(500);},i*100);
+                });
+            }
+        });
+    });
+</script>
+<div class="container">
+
+  <div>
+    &laquo; <a href="/jquery-radmenu-plugin#radmenu_tutorial_4">Go back to the main jQuery Radmenu page (and see <strong>more examples</strong>)</a>
+    / <a href="/youtube-quickplay" target="_blank">See a YouTube Implementation of this plugin</a> &raquo;
+  </div>
+
+  <h1>Radial Menu Example</h1>
+
+  <a href="#" onClick='jQuery("#radial_container").radmenu("show")'> Show Menu</a> |
+  <a href="#" onClick='jQuery("#radial_container").radmenu("hide")'> Hide Menu</a> |
+  <a href="#" onClick='jQuery("#radial_container").radmenu("next")'> Rotate Menu Clockwise</a> |
+  <a href="#" onClick='jQuery("#radial_container").radmenu("prev")'> Rotate Menu Anti-Clockwise</a> |
+  <a href="#" onClick='jQuery("#radial_container").radmenu("shuffle")'> Shuffle Items in the Menu</a> |
+  Scale to:
+  <select onChange='jQuery("#radial_container").radmenu("scale",this.value);'>
+    <option value="-2.0">-2.0x</option>
+    <option value="-1.5">-1.5x</option>
+    <option value="-1.0">-1.0x</option>
+    <option value="-0.5">-0.5x</option>
+    <option value="0">0x</option>
+    <option value="0.5">0.5x</option>
+    <option value="1.0" selected>1x</option>
+    <option value="1.5">1.5x</option>
+    <option value="2.0">2x</option>
+  </select>
+
+
+  </div>
+
+  <div id='radial_container'>
+    <ul class='list'>
+      <li class='item'>	<div class='my_class'>  0  </div>	</li>
+      <li class='item'>	<div class='my_class'>  1  </div>	</li>
+      <li class='item'>	<div class='my_class'>  2  </div>	</li>
+      <li class='item'>	<div class='my_class'>  3  </div>	</li>
+      <li class='item'>	<div class='my_class'>  4  </div>	</li>
+      <li class='item'>	<div class='my_class'>  5  </div>	</li>
+      <li class='item'>	<div class='my_class'>  6  </div>	</li>
+      <li class='item'>	<div class='my_class'>  7  </div>	</li>
+      <li class='item'>	<div class='my_class'>  8  </div>	</li>
+      <li class='item'>	<div class='my_class'>  9  </div>	</li>
+    </ul>
+  </div>
+
+</div>
+

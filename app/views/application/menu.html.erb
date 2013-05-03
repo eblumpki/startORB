@@ -1,0 +1,48 @@
+<% if Category.find_all_by_user_id(session[:user_id]).count == 0 %>
+    <h1>Sample StartOrb</h1>
+    <h2>Start making your own StartOrb by using the Manage Categories and Manage Pages buttons below!</h2>
+    <div class="toolbar">
+      <span class="toolbar"><%= link_to 'Manage Categories', categories_path %></span>&nbsp;&nbsp;&nbsp;
+      <span class="toolbar"><%= link_to 'Manage Pages', pages_path  %></span>&nbsp;&nbsp;&nbsp;
+      <span class="toolbar"><%= link_to 'Logout', "../users/login?user[name]=logout", :method => :post %></span>
+    </div>
+    <div id='nested_container'>
+      <ul class='list'>
+        <% @categories = Category.find_all_by_user_id(1)
+           @categories.each do |category| %>
+            <li class="item">
+              <div class="my_class_main"> <%= category.name %></div>
+              <ul class="sublist">
+                <% @pages = Page.find_all_by_category_id(category.id)
+                   @pages.each do |page|%>
+                    <li class="subitem"><div class="my_class_sub"> <a href="<%= page.url %>"><img src="http://www.google.com/s2/favicons?domain=<%= page.url %>" width=32 height=32 alt="<%= page.name %>" title="<%= page.name %>"></a></div></li>
+                <% end %>
+              </ul>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+<% else %>
+  <h1><%= User.find_by_id(session[:user_id]).name %>'s StartOrb</h1><br/>
+  <div class="toolbar">
+    <span class="toolbar"><%= link_to 'Manage Categories', categories_path %></span>&nbsp;&nbsp;&nbsp;
+    <span class="toolbar"><%= link_to 'Manage Pages', pages_path  %></span>&nbsp;&nbsp;&nbsp;
+    <span class="toolbar"><%= link_to 'Logout', "../users/login?user[name]=logout", :method => :post %></span>
+  </div>
+  <div id='nested_container'>
+    <ul class='list'>
+      <% @categories = Category.find_all_by_user_id(session[:user_id])
+         @categories.each do |category| %>
+        <li class="item">
+          <div class="my_class_main"> <%= category.name %></div>
+          <ul class="sublist">
+            <% @pages = Page.find_all_by_category_id(category.id)
+               @pages.each do |page|%>
+              <li class="subitem"><div class="my_class_sub"> <a href="<%= page.url %>"><img src="http://www.google.com/s2/favicons?domain=<%= page.url %>" width=32 height=32 alt="<%= page.name %>" title="<%= page.name %>"></a></div></li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

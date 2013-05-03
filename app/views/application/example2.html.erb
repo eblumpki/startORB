@@ -1,0 +1,72 @@
+<style>
+    #radial_container {
+        position:relative;
+        left:425px;
+        top: 75px;
+        width:100px;
+        height:100px;
+        text-align:center;
+    }
+    .radial_div_item {
+        background-color:none;
+        height:30px;
+        padding:10px;
+        color:#234;
+        -moz-border-radius:10px;
+        -webkit-border-radius:10px;
+        cursor:pointer;
+    }
+    .radial_div_item.active {
+        background-color:#511; color:white;
+        padding: 10px;
+        -moz-border-radius:40px;
+        z-index:100;
+    }
+    .my_class {
+        font-size:1.5em;
+        color:#abc;
+        background-color:#def;
+        -moz-border-radius:30px;
+        width:30px;
+        height:30px;
+        -webkit-border-radius:30px;
+    }
+</style>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery("#radial_container").radmenu({
+            listClass: 'list', // the list class to look within for items
+            itemClass: 'item', // the items - NOTE: the HTML inside the item is copied into the menu item
+            radius: 100, // radius in pixels
+            animSpeed:400, // animation speed in millis
+            centerX: 30, // the center x axis offset
+            centerY: 100, // the center y axis offset
+            selectEvent: "click", // the select event (click)
+            onSelect: function($selected){ // show what is returned
+                alert("you clicked on .. " + $selected.index());
+            },
+            angleOffset: 0 // in degrees
+        });
+    });
+</script>
+<div class="container">
+  <a href="#" onClick='jQuery("#radial_container").radmenu("show")'> Show Menu </a>
+  <a href="#" onClick='jQuery("#radial_container").radmenu("hide")'> Hide Menu </a>
+  <a href="#" onClick='jQuery("#radial_container").radmenu("next")'> Rotate Menu Clockwise </a>
+  <a href="#" onClick='jQuery("#radial_container").radmenu("prev")'> Rotate Menu Anti-Clockwise </a>
+  <a href="#" onClick='jQuery("#radial_container").radmenu("shuffle")'> Shuffle Items in the Menu </a>
+  <div id='radial_container'>
+    <ul class='list'>
+      <li class='item'>	<div class='my_class'>  0  </div>	</li>
+      <li class='item'>	<div class='my_class'>  1  </div>	</li>
+      <li class='item'>	<div class='my_class'>  2  </div>	</li>
+      <li class='item'>	<div class='my_class'>  3  </div>	</li>
+      <li class='item'>	<div class='my_class'>  4  </div>	</li>
+      <li class='item'>	<div class='my_class'>  5  </div>	</li>
+      <li class='item'>	<div class='my_class'>  6  </div>	</li>
+      <li class='item'>	<div class='my_class'>  7  </div>	</li>
+      <li class='item'>	<div class='my_class'>  8  </div>	</li>
+      <li class='item'>	<div class='my_class'>  9  </div>	</li>
+    </ul>
+  </div>
+</div>
